@@ -1,0 +1,122 @@
+swagger: '2.0'
+info:
+  description: This is a RESTful API for immediate and scheduled rides
+  version: "2.0"
+  title: Ride Hailing Service API
+
+paths:
+  /request/immediate:
+    get:
+      summary: get an immediate customer ride request
+      operationId: app.get_request_immediate
+      description: Stores a customer ride request
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: startDate
+        description: start date of event
+        required: false
+        type: string
+        format: date-time
+      - in: query
+        name: endDate
+        description: end date of event
+        required: false
+        type: string
+        format: date-time
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/requestImmediate'
+        400:
+          description: bad input parameter
+  /request/scheduled:
+    get:
+      summary: get a scheduled customer ride request
+      operationId: app.get_request_scheduled
+      description: Stores a customer ride request
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: startDate
+        description: start date of event
+        required: false
+        type: string
+        format: date-time
+      - in: query
+        name: endDate
+        description: end date of event
+        required: false
+        type: string
+        format: date-time
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/requestScheduled'
+        400:
+          description: bad input parameter
+
+definitions:
+  requestImmediate:
+    type: object
+    required:
+    - id
+    - name
+    - location
+    - destination
+    - passengers
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      name:
+        type: string
+        example: John Smith
+      location:
+        type: string
+        example: 1234 Sesame Street
+      destination:
+        type: string
+        example: 1234 Sesame Street
+      passengers:
+        type: integer
+        example: 2
+  requestScheduled:
+    type: object
+    required:
+    - id
+    - name
+    - location
+    - destination
+    - passengers
+    - datetime
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      name:
+        type: string
+        example: John Smith
+      location:
+        type: string
+        example: 1234 Sesame Street
+      destination:
+        type: string
+        example: 1234 Sesame Street
+      passengers:
+        type: integer
+        example: 2
+      datetime:
+        type: string
+        format: date-time
+        example: 2020-01-09T09:15:00.001Z

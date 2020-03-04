@@ -1,0 +1,7 @@
+version: 1
+datastore:
+    user: 'root'
+    password: '54514ErrorAndTrial'
+    hostname: 'localhost'
+    port: '3306'
+    db: 'events'
