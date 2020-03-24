@@ -8,6 +8,10 @@ with open('app_conf.yaml', 'r') as f:
     password = app_config['datastore']['password']
     database = app_config['datastore']['db']
 
+db_create = mysql.connector.connect(host=host, user=user, password=password)
+mycursor = db_create.cursor()
+mycursor.execute("CREATE DATABASE IF NOT EXISTS events")
+
 db_conn = mysql.connector.connect(host=host, user=user, password=password, database=database)
 db_cursor = db_conn.cursor()
 

@@ -1,7 +1,7 @@
 version: 1
 datastore:
     user: 'root'
-    password: '54514ErrorAndTrial'
-    hostname: 'localhost'
+    password: 'password'
+    hostname: 'docker-3855.westus2.cloudapp.azure.com'
     port: '3306'
     db: 'events'
