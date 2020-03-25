@@ -147,7 +147,7 @@ def get_request_scheduled(startDate=None, endDate=None):
 
 def process_messages():
     client = KafkaClient(hosts='{}:{}'.format(kafka_server, kafka_port))
-    topic = client.topics['{}'.format(kafka_topic)]
+    topic = client.topics[b'%b' % kafka_topic.encode()]
     consumer = topic.get_simple_consumer(
         reset_offset_on_start=False,
         auto_offset_reset=OffsetType.LATEST,
